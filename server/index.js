@@ -48,7 +48,7 @@ app.post('/api/chat', async (req, res) => {
         
         // Take the last 10 messages for context
         const recentMessages = messages.slice(-10);
-        const history = [];
+        let history = [];
         
         // Add previous messages to history
         for (let i = 0; i < recentMessages.length - 1; i++) {
@@ -59,9 +59,16 @@ app.post('/api/chat', async (req, res) => {
             });
         }
 
+        // Gemini requires history to start with a 'user' message
+        while (history.length > 0 && history[0].role !== 'user') {
+            history.shift();
+        }
+
         const chat = model.startChat({
             history: history,
-            systemInstruction: fullSystemPrompt,
+            systemInstruction: {
+                parts: [{ text: fullSystemPrompt }]
+            },
             generationConfig: {
                 maxOutputTokens: 1000,
                 temperature: 0.7,
@@ -69,8 +76,11 @@ app.post('/api/chat', async (req, res) => {
         });
 
         const lastMessage = recentMessages[recentMessages.length - 1].content;
+        console.log(`Sending message to Gemini for ${character}: "${lastMessage.substring(0, 50)}..."`);
+        
         const result = await chat.sendMessage(lastMessage);
         const responseText = result.response.text();
+        console.log(`Gemini response for ${character}: "${responseText.substring(0, 50)}..."`);
 
         res.json({ message: responseText });
     } catch (error) {

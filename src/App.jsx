@@ -31,14 +31,15 @@ function App() {
   }, [activeStep, messages.length]);
 
   const handleSendMessage = async (text) => {
+    if (isJamieTyping || isThomasTyping) return; // Prevent double-triggering
+
     const userMessage = { role: 'user', content: text, timestamp: new Date() };
+    const newMessages = [...messages, userMessage];
     
-    setMessages(prev => {
-      const newMessages = [...prev, userMessage];
-      // Trigger AI responses with the latest state
-      getAIResponses(newMessages);
-      return newMessages;
-    });
+    setMessages(newMessages);
+    
+    // Trigger AI responses outside of the state updater
+    getAIResponses(newMessages);
   };
 
   const getAIResponses = async (history) => {
