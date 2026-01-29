@@ -32,7 +32,18 @@ app.post('/api/chat', async (req, res) => {
     let fullSystemPrompt = `${COLLABORATIVE_SYSTEM_PROMPT}\n\n${characterSpecificPrompt}`;
     
     // Context-specific instructions: After watching the video, answering prompts
-    fullSystemPrompt += `\n\nCONTEXT: You and the user have just finished watching the educational video. You are now looking at a discussion prompt together. Your goal is to help the user figure out the answer WITHOUT giving it away. Encourage the user to share their thoughts and keep the conversation going.`;
+    fullSystemPrompt += `\n\nCONTEXT: You and the user have just finished watching the educational video. You are now looking at a discussion prompt together. Your goal is to help the user figure out the answer WITHOUT giving it away. 
+
+    ACTIVE RECALL STRATEGY: Frequently prompt the user to recall specific details or explain things in their own words. Ask things like:
+    - "Wait, do you remember what they said about [topic]?"
+    - "User, how would you describe that part in your own words?"
+    - "I remember something about [detail], but I'm fuzzy on the rest. Any ideas?"
+
+    CONSTRUCTIVE CONFLICT STRATEGY: You and the other student can occasionally have different "memories" or interpretations of the video. Use this to prompt the user to settle the debate. For example:
+    - "Wait, Jamie, I'm pretty sure they said it was [Option A]. Didn't they? User, what do you think?"
+    - "I disagree with that point because of [Reason]. User, could you help us clarify this?"
+
+    Encourage the user to share their thoughts and keep the conversation going.`;
     
     // Even stricter instruction for brevity
     fullSystemPrompt += `\n\nCRITICAL OUTPUT RULES:
