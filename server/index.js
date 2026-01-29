@@ -35,7 +35,12 @@ app.post('/api/chat', async (req, res) => {
     fullSystemPrompt += `\n\nCONTEXT: You and the user have just finished watching the educational video. You are now looking at a discussion prompt together. Your goal is to help the user figure out the answer WITHOUT giving it away. Encourage the user to share their thoughts and keep the conversation going.`;
     
     // Even stricter instruction for brevity
-    fullSystemPrompt += `\n\nCRITICAL: You are in a fast-paced group chat. Your responses MUST be extremely concise (max 1 short sentence or phrase). Be punchy and conversational. Never use more than 15 words.`;
+    fullSystemPrompt += `\n\nCRITICAL OUTPUT RULES:
+1. Speak ONLY as ${character.toUpperCase()}.
+2. NEVER include tags like [JAMIE]: or [THOMAS]: in your response.
+3. NEVER simulate or write for the other student.
+4. Keep it under 15 words.
+5. Be punchy and conversational.`;
     
     if (context) {
         fullSystemPrompt += `\n\nAdditional context for this turn: ${context}`;

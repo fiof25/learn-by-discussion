@@ -36,19 +36,6 @@ const VideoPlayer = ({ onComplete }) => {
                   allowFullScreen
                ></iframe>
              </div>
-
-             {/* Controls Bar */}
-             <div className="py-4 flex items-center justify-center space-x-8">
-                <button className="text-gray-200 hover:text-blue-600 transition-all">
-                  <SkipBack className="w-6 h-6" />
-                </button>
-                <button className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center text-blue-600 hover:bg-blue-50 transition-all shadow-sm">
-                  <Play className="w-6 h-6 fill-current ml-1" />
-                </button>
-                <button className="text-gray-200 hover:text-blue-600 transition-all">
-                  <SkipForward className="w-6 h-6" />
-                </button>
-             </div>
            </div>
         </div>
       </div>

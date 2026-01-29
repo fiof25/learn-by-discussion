@@ -23,11 +23,11 @@ const Chat = ({ messages, onSendMessage, isJamieTyping, isThomasTyping }) => {
     <div className="flex flex-col h-full bg-white">
       {/* Chat Header */}
       <div className="p-5 border-b border-gray-100 flex items-center space-x-4">
-        <div className="flex -space-x-3">
-          <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-orange-100 shadow-sm z-10">
+        <div className="flex -space-x-4">
+          <div className="w-14 h-14 rounded-full border-2 border-white overflow-hidden bg-orange-100 shadow-sm z-10">
             <img src="/assets/jamie_beaver.png" alt="Jamie" className="w-full h-full object-cover" />
           </div>
-          <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-blue-100 shadow-sm">
+          <div className="w-14 h-14 rounded-full border-2 border-white overflow-hidden bg-blue-100 shadow-sm">
             <img src="/assets/thomas_goose.png" alt="Thomas" className="w-full h-full object-cover" />
           </div>
         </div>
@@ -43,18 +43,16 @@ const Chat = ({ messages, onSendMessage, isJamieTyping, isThomasTyping }) => {
       {/* Messages area */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#f8fafc]">
         {messages.map((msg, i) => (
-          <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+          <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start items-start space-x-3'}`}>
             {msg.role === 'assistant' && (
-              <div className="flex items-center space-x-2 mb-1 ml-1">
-                <div className={`w-5 h-5 rounded-full overflow-hidden ${msg.character === 'jamie' ? 'bg-orange-100' : 'bg-blue-100'}`}>
-                   <img src={`/assets/${msg.character === 'jamie' ? 'jamie_beaver.png' : 'thomas_goose.png'}`} alt={msg.character} className="w-full h-full object-cover" />
-                </div>
+              <div className={`w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ${msg.character === 'jamie' ? 'bg-orange-100' : 'bg-blue-100'} shadow-sm`}>
+                 <img src={`/assets/${msg.character === 'jamie' ? 'jamie_beaver.png' : 'thomas_goose.png'}`} alt={msg.character} className="w-full h-full object-cover" />
               </div>
             )}
-            <div className={`max-w-[85%] rounded-lg px-4 py-2 text-xs leading-relaxed shadow-sm ${
+            <div className={`max-w-[80%] rounded-xl px-4 py-3 text-xs leading-relaxed shadow-sm ${
               msg.role === 'user' 
-                ? 'bg-[#2563eb] text-white' 
-                : 'bg-white text-gray-800 border border-gray-100'
+                ? 'bg-[#2563eb] text-white rounded-tr-none' 
+                : 'bg-white text-gray-800 border border-gray-100 rounded-tl-none'
             }`}>
               {msg.content}
             </div>
@@ -62,8 +60,11 @@ const Chat = ({ messages, onSendMessage, isJamieTyping, isThomasTyping }) => {
         ))}
         
         {(isJamieTyping || isThomasTyping) && (
-          <div className="flex items-start">
-             <div className="bg-white text-gray-400 shadow-sm border border-gray-100 rounded-lg px-4 py-2 text-[10px] font-medium animate-pulse">
+          <div className="flex items-start space-x-3">
+             <div className={`w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ${isJamieTyping ? 'bg-orange-100' : 'bg-blue-100'} shadow-sm animate-pulse`}>
+                <img src={`/assets/${isJamieTyping ? 'jamie_beaver.png' : 'thomas_goose.png'}`} alt="typing" className="w-full h-full object-cover opacity-50" />
+             </div>
+             <div className="bg-white text-gray-400 shadow-sm border border-gray-100 rounded-xl rounded-tl-none px-4 py-2 text-[10px] font-medium animate-pulse">
                 {isJamieTyping ? 'Jamie is thinking...' : 'Thomas is reflecting...'}
              </div>
           </div>
