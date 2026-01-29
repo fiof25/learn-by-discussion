@@ -41,21 +41,20 @@ const Chat = ({ messages, onSendMessage, isJamieTyping, isThomasTyping }) => {
       </div>
 
       {/* Messages area */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-6 bg-[#f8fafc]">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#f8fafc]">
         {messages.map((msg, i) => (
           <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
             {msg.role === 'assistant' && (
-              <div className="flex items-center space-x-2 mb-2 ml-1">
+              <div className="flex items-center space-x-2 mb-1 ml-1">
                 <div className={`w-5 h-5 rounded-full overflow-hidden ${msg.character === 'jamie' ? 'bg-orange-100' : 'bg-blue-100'}`}>
                    <img src={`/assets/${msg.character === 'jamie' ? 'jamie_beaver.png' : 'thomas_goose.png'}`} alt={msg.character} className="w-full h-full object-cover" />
                 </div>
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{msg.character}</span>
               </div>
             )}
-            <div className={`max-w-[90%] rounded-[20px] px-4 py-3 text-[13px] leading-relaxed shadow-sm ${
+            <div className={`max-w-[85%] rounded-lg px-4 py-2 text-xs leading-relaxed shadow-sm ${
               msg.role === 'user' 
-                ? 'bg-[#2563eb] text-white rounded-tr-none' 
-                : 'bg-white text-gray-800 border border-gray-100 rounded-tl-none'
+                ? 'bg-[#2563eb] text-white' 
+                : 'bg-white text-gray-800 border border-gray-100'
             }`}>
               {msg.content}
             </div>
@@ -64,7 +63,7 @@ const Chat = ({ messages, onSendMessage, isJamieTyping, isThomasTyping }) => {
         
         {(isJamieTyping || isThomasTyping) && (
           <div className="flex items-start">
-             <div className="bg-white text-gray-400 shadow-sm border border-gray-100 rounded-2xl rounded-tl-none px-4 py-2 text-[11px] font-medium animate-pulse">
+             <div className="bg-white text-gray-400 shadow-sm border border-gray-100 rounded-lg px-4 py-2 text-[10px] font-medium animate-pulse">
                 {isJamieTyping ? 'Jamie is thinking...' : 'Thomas is reflecting...'}
              </div>
           </div>
@@ -72,15 +71,15 @@ const Chat = ({ messages, onSendMessage, isJamieTyping, isThomasTyping }) => {
       </div>
 
       {/* Input area */}
-      <div className="p-5 border-t border-gray-100 bg-white">
-        <form onSubmit={handleSubmit} className="relative">
+      <div className="p-4 border-t border-gray-100 bg-white">
+        <form onSubmit={handleSubmit} className="flex space-x-2">
           <input
             name="message"
             autoComplete="off"
             placeholder="Engage in the conversation here..."
-            className="w-full pl-5 pr-14 py-4 bg-gray-50 border border-gray-100 rounded-2xl text-[13px] focus:ring-2 focus:ring-blue-500/20 focus:bg-white focus:border-blue-500/50 outline-none transition-all placeholder:text-gray-400"
+            className="flex-1 p-3 bg-white border border-gray-200 rounded-lg text-xs outline-none focus:border-blue-500/50 transition-all placeholder:text-gray-400"
           />
-          <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-95">
+          <button type="submit" className="p-3 border border-gray-200 text-gray-400 rounded-lg hover:text-blue-600 transition-all active:scale-95">
             <Send className="w-4 h-4" />
           </button>
         </form>

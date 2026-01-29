@@ -105,7 +105,7 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 overflow-hidden">
+    <div className="flex h-screen bg-[#f3f4f6] overflow-hidden">
       {/* Sidebar - Fix to left */}
       <Sidebar />
 
@@ -113,7 +113,7 @@ function App() {
       <div className="flex flex-1 overflow-hidden">
         {/* Chat - Only show when on 'question' step */}
         {activeStep === 'question' && (
-          <div className="w-80 border-r border-gray-200 bg-white flex flex-col animate-in slide-in-from-left duration-500">
+          <div className="w-80 border-r border-gray-200 bg-white flex flex-col flex-shrink-0 animate-in slide-in-from-left duration-300">
             <Chat 
               messages={messages} 
               onSendMessage={handleSendMessage}
@@ -124,7 +124,7 @@ function App() {
         )}
 
         {/* Main Workspace - Video or Question */}
-        <main className="flex-1 flex flex-col relative overflow-y-auto">
+        <main className="flex-1 flex flex-col relative overflow-hidden bg-white">
           {activeStep === 'video' ? (
             <VideoPlayer onComplete={() => setActiveStep('question')} />
           ) : (
