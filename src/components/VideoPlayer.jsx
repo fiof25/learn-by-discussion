@@ -19,7 +19,7 @@ const VideoPlayer = ({ onComplete }) => {
         <div className="w-full max-w-[900px] bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col border border-gray-100 min-h-0">
            {/* Video Title Bar */}
            <div className="bg-[#1e40af] px-6 py-3 text-white">
-             <h2 className="text-base font-bold">The Aztecs: Part 1</h2>
+             <h2 className="text-base font-bold">A Brief History of Chess</h2>
              <p className="text-[10px] opacity-70 font-medium">Source: Youtube</p>
            </div>
            
@@ -29,8 +29,8 @@ const VideoPlayer = ({ onComplete }) => {
              <div className="aspect-video relative bg-black rounded-lg overflow-hidden border border-gray-100 shadow-sm flex-shrink">
                <iframe 
                   className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/UO5ktwPXsyM" 
-                  title="The Rise and Fall of the Inca Empire"
+                  src="https://www.youtube.com/embed/YeB-1F-UKO0" 
+                  title="A Brief History of Chess"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen

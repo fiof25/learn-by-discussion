@@ -17,13 +17,13 @@ function App() {
         {
           role: 'assistant',
           character: 'jamie',
-          content: "That was such a cool video! Any ideas who the emperor was? I'm blanking on the name!",
+          content: "The video said chess changed a TON in the 15th century! I'm trying to remember why they recast that one piece... something about people in power back then? What do you think, User?",
           timestamp: new Date()
         },
         {
           role: 'assistant',
           character: 'thomas',
-          content: "The date 1450 is definitely a major clue. What do you remember about the ruler from that period, user?",
+          content: "It mentioned that the recasting was inspired by a specific cultural surge in Europe. User, do you recall what influenced the decision to make that piece so much more powerful?",
           timestamp: new Date()
         }
       ]);

@@ -1,6 +1,7 @@
 {
   "name": "agent-test-2",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"node --watch server/index.js\" \"vite\"",
