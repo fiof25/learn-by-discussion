@@ -17,13 +17,13 @@ function App() {
         {
           role: 'assistant',
           character: 'jamie',
-          content: "The video said chess changed a TON in the 15th century! I'm trying to remember why they recast that one piece... something about people in power back then? What do you think, User?",
+          content: "The video said chess changed a TON in the 15th century! I'm trying to remember why they recast that one piece... something about people in power back then? What do you think, Fiona?",
           timestamp: new Date()
         },
         {
           role: 'assistant',
           character: 'thomas',
-          content: "It mentioned that the recasting was inspired by a specific cultural surge in Europe. User, do you recall what influenced the decision to make that piece so much more powerful?",
+          content: "It mentioned that the recasting was inspired by a specific cultural surge in Europe. Fiona, do you recall what influenced the decision to make that piece so much more powerful?",
           timestamp: new Date()
         }
       ]);
